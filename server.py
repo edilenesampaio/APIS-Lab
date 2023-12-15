@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request
 
 from pprint import pformat
@@ -48,10 +49,10 @@ def find_afterparties():
                'unit': unit,
                'sort': sort}
     
-    # code for troubelshooting
-    print("*************")
-    print(payload)
-    print("*************")
+    # code for troubleshooting
+    # print("*************")
+    # print(payload)
+    # print("*************")
     # TODO: Make a request to the Event Search endpoint to search for events
     #
     # - Use form data from the user to populate any search parameters
@@ -64,18 +65,16 @@ def find_afterparties():
     
     data = res.json()
 
-
-    events = []
-    #have a conditional for if the key doesn't exist versus it does
+    # print("This is data########")
+    # print(data)
     
-    if key not in payload:
-        print(events.append(data))
+    if "_embedded" not in data:
+        events = []
 
-
-    #if the key does exist, need to exist inner data
-    # else:
-        #need to access inner data
-        # inner_data = 
+        
+    else:
+        # need to access inner data
+        events = data["_embedded"]["events"]
 
 
     #
